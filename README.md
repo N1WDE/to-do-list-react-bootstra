@@ -41,4 +41,4 @@ Aplicación web tipo To-Do List para gestionar tareas y metas personales. Permit
 
 ## 👤 Autor
 
-Tu nombre
+Edwin Granados
