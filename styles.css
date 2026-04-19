@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  background-color: #f5f6fa;
+}
+
+h5 {
+  font-weight: bold;
+}
