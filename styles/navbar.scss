@@ -1,0 +1,12 @@
+@import "./variables.scss";
+
+.custom-navbar {
+  background: #020617;
+  box-shadow: $shadow;
+}
+
+.brand {
+  color: white !important;
+  font-weight: bold;
+  font-size: 1.4rem;
+}

@@ -1,0 +1,57 @@
+$bg: #0f172a;
+$card: rgba(255,255,255,.08);
+$text: white;
+$accent: #0d6efd;
+$shadow: 0 10px 30px rgba(0,0,0,.3);
+$radius: 16px;
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  color: $text;
+  font-family: Arial, sans-serif;
+}
+
+.custom-navbar {
+  background: #020617;
+  box-shadow: $shadow;
+}
+
+.brand {
+  color: white !important;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.form-card {
+  background: $card !important;
+  border: none !important;
+  border-radius: $radius !important;
+  color: $text !important;
+  box-shadow: $shadow;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+}
+
+.add-btn {
+  width: 100%;
+}
+
+.task-card {
+  background: $card !important;
+  border: none !important;
+  border-radius: $radius !important;
+  color: white !important;
+  margin-bottom: 15px;
+  box-shadow: $shadow;
+}
+
+.task-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

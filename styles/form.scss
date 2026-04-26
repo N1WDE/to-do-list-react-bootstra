@@ -1,0 +1,18 @@
+@import "./variables.scss";
+
+.form-card {
+  background: $card !important;
+  border: none !important;
+  border-radius: $radius !important;
+  color: $text !important;
+  box-shadow: $shadow;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+}
+
+.add-btn {
+  width: 100%;
+}

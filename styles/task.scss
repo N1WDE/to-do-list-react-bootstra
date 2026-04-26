@@ -1,0 +1,16 @@
+@import "./variables.scss";
+
+.task-card {
+  background: $card !important;
+  border: none !important;
+  border-radius: $radius !important;
+  color: white !important;
+  margin-bottom: 15px;
+  box-shadow: $shadow;
+}
+
+.task-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
