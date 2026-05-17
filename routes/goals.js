@@ -1,19 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-let goals = [
-  {
-    id: 1,
-    title: "Aprender Express",
-    date: "2026-06-01"
-  }
-];
+const Goal = require("../models/Goal");
 
-router.get("/getGoals", (req, res) => {
+router.get("/getGoals", async (req, res) => {
+  const goals = await Goal.find();
+
   res.status(200).json(goals);
 });
 
-router.post("/addGoal", (req, res) => {
+router.post("/addGoal", async (req, res) => {
   const { title, date } = req.body;
 
   if (!title || !date) {
@@ -22,32 +18,30 @@ router.post("/addGoal", (req, res) => {
     });
   }
 
-  const newGoal = {
-    id: Date.now(),
+  const newGoal = new Goal({
     title,
     date
-  };
+  });
 
-  goals.push(newGoal);
+  await newGoal.save();
 
   res.status(200).json({
-    message: "Meta agregada",
-    goal: newGoal
+    message: "Meta agregada"
   });
 });
 
-router.delete("/removeGoal/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+router.delete("/removeGoal/:id", async (req, res) => {
+  const { id } = req.params;
 
-  const goalExists = goals.find((goal) => goal.id === id);
+  const goal = await Goal.findById(id);
 
-  if (!goalExists) {
+  if (!goal) {
     return res.status(400).json({
       message: "Meta no encontrada"
     });
   }
 
-  goals = goals.filter((goal) => goal.id !== id);
+  await Goal.findByIdAndDelete(id);
 
   res.status(200).json({
     message: "Meta eliminada"

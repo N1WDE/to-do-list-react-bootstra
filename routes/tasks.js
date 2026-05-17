@@ -1,19 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-let tasks = [
-  {
-    id: 1,
-    title: "Estudiar Node",
-    date: "2026-05-15"
-  }
-];
+const Task = require("../models/Task");
 
-router.get("/getTasks", (req, res) => {
+router.get("/getTasks", async (req, res) => {
+  const tasks = await Task.find();
+
   res.status(200).json(tasks);
 });
 
-router.post("/addTask", (req, res) => {
+router.post("/addTask", async (req, res) => {
   const { title, date } = req.body;
 
   if (!title || !date) {
@@ -22,32 +18,30 @@ router.post("/addTask", (req, res) => {
     });
   }
 
-  const newTask = {
-    id: Date.now(),
+  const newTask = new Task({
     title,
     date
-  };
+  });
 
-  tasks.push(newTask);
+  await newTask.save();
 
   res.status(200).json({
-    message: "Tarea agregada",
-    task: newTask
+    message: "Tarea agregada"
   });
 });
 
-router.delete("/removeTask/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+router.delete("/removeTask/:id", async (req, res) => {
+  const { id } = req.params;
 
-  const taskExists = tasks.find((task) => task.id === id);
+  const task = await Task.findById(id);
 
-  if (!taskExists) {
+  if (!task) {
     return res.status(400).json({
       message: "Tarea no encontrada"
     });
   }
 
-  tasks = tasks.filter((task) => task.id !== id);
+  await Task.findByIdAndDelete(id);
 
   res.status(200).json({
     message: "Tarea eliminada"
